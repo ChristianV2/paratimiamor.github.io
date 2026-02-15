@@ -1,0 +1,65 @@
+body {
+
+background: linear-gradient(45deg, #ff4e50, #fc913a);
+
+height: 100vh;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+
+font-family: Arial;
+
+color: white;
+
+text-align: center;
+
+}
+
+.container {
+
+background: rgba(0,0,0,0.3);
+
+padding: 30px;
+
+border-radius: 15px;
+
+}
+
+button {
+
+padding: 15px 30px;
+
+font-size: 18px;
+
+border: none;
+
+border-radius: 10px;
+
+background: white;
+
+color: red;
+
+cursor: pointer;
+
+transition: 0.3s;
+
+}
+
+button:hover {
+
+transform: scale(1.1);
+
+}
+
+.carta {
+
+margin-top: 20px;
+
+font-size: 20px;
+
+display: none;
+
+}

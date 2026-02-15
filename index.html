@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para Ti ❤️</title>
+
+<style>
+
+/* BODY CON FONDO EN CUADRITOS */
+
+body{
+
+margin:0;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow-x:hidden;
+
+/* GRADIENTE BASE */
+
+background: linear-gradient(
+rgba(0,0,0,0.3),
+rgba(0,0,0,0.3)
+),
+
+/* IMAGEN MOSAICO */
+
+url("fondo.jpeg");
+
+background-size:
+
+cover,   /* gradiente */
+120px;   /* tamaño cuadritos */
+
+background-repeat:
+
+no-repeat,
+repeat;
+
+background-position:
+
+center,
+top left;
+
+min-height:100vh;
+
+}
+
+
+/* TITULO SUPERIOR */
+
+.san-valentin{
+
+margin-top:20px;
+font-size:18px;
+font-weight:bold;
+
+text-shadow:
+0 0 10px white,
+0 0 20px red;
+
+animation: latido 1.5s infinite;
+
+}
+
+@keyframes latido{
+
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+
+}
+
+
+/* CORAZONES */
+
+.corazon{
+
+position:fixed;
+top:-10px;
+font-size:24px;
+animation: caer linear infinite;
+
+}
+
+@keyframes caer{
+
+0%{transform:translateY(0);}
+100%{transform:translateY(110vh);opacity:0;}
+
+}
+
+
+/* CONTENEDOR */
+
+.container{
+
+margin-top:20px;
+
+background: rgba(0,0,0,0.45);
+
+padding:20px;
+
+border-radius:15px;
+
+width:90%;
+
+max-width:400px;
+
+margin-left:auto;
+margin-right:auto;
+
+backdrop-filter: blur(4px);
+
+}
+
+
+/* BOTON */
+
+button{
+
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:white;
+color:red;
+cursor:pointer;
+
+}
+
+
+/* CARTA TEXTO */
+
+.carta{
+
+margin-top:20px;
+font-size:20px;
+display:none;
+
+}
+
+
+/* MENSAJE FOTOS */
+
+#mensajeFotos{
+
+margin-top:20px;
+display:none;
+
+}
+
+
+/* GALERIA */
+
+.galeria{
+
+display:flex;
+justify-content:center;
+gap:10px;
+flex-wrap:wrap;
+margin-top:20px;
+
+}
+
+
+/* FOTO */
+
+.foto{
+
+width:100px;
+height:140px;
+object-fit:cover;
+border-radius:10px;
+background:white;
+padding:4px;
+
+display:none;
+opacity:0;
+transition:1s;
+
+}
+
+.foto.mostrar{
+
+display:block;
+opacity:1;
+
+}
+
+
+/* FOTO FINAL */
+
+.foto-final{
+
+width:100%;
+max-width:300px;
+
+margin:20px auto;
+
+border-radius:15px;
+background:white;
+padding:5px;
+
+display:block;
+opacity:0;
+transition:1.5s;
+
+}
+
+.foto-final.mostrar{
+
+opacity:1;
+
+}
+
+
+/* SOBRE CONTENEDOR */
+
+.sobre-container{
+
+opacity:0;
+transform:translateY(30px);
+transition:1s;
+margin-top:30px;
+pointer-events:none;
+
+}
+
+.sobre-container.mostrar{
+
+opacity:1;
+transform:translateY(0);
+pointer-events:auto;
+
+}
+
+
+/* SOBRE */
+
+.sobre{
+
+position:relative;
+
+width:220px;
+
+min-height:140px;
+
+background:#ff4e50;
+
+margin:auto;
+
+cursor:pointer;
+
+padding-bottom:20px;
+
+display:flex;
+justify-content:center;
+align-items:flex-start;
+
+border-radius:5px;
+
+box-shadow:0 15px 30px rgba(0,0,0,0.4);
+
+}
+
+
+/* TAPA */
+
+.tapa{
+
+position:absolute;
+
+top:0;
+left:0;
+right:0;
+
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+border-top:70px solid #ff6b6b;
+
+transform-origin:top;
+transition:1s;
+
+}
+
+
+/* CARTA */
+
+.carta-sobre{
+
+position:relative;
+
+margin-top:70px;
+
+background:white;
+color:red;
+
+padding:15px;
+
+opacity:0;
+transition:1s;
+
+font-weight:bold;
+font-size:14px;
+
+width:80%;
+
+border-radius:5px;
+
+box-shadow:0 0 25px rgba(0,0,0,0.7);
+
+white-space:pre-line;
+
+}
+
+
+/* ANIMACION ABRIR */
+
+.sobre.abierto .tapa{
+
+transform:rotateX(180deg);
+
+}
+
+.sobre.abierto .carta-sobre{
+
+opacity:1;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<h2 class="san-valentin">
+
+💌 ERES TU MI SAN VALENTIN 💌
+
+</h2>
+
+
+<div class="container">
+
+
+<h1 style="font-size:22px;">💌 Tengo algo para ti 💌</h1>
+
+
+
+<button onclick="abrirCarta(event)" id="boton">
+
+Abrir Carta
+
+</button>
+
+
+
+<div id="carta" class="carta">
+
+
+<p id="texto"></p>
+
+
+<p id="mensajeFotos">
+
+📸 Toca la pantalla para ver nuestras fotos
+
+</p>
+
+
+
+<div class="galeria">
+
+<img src="foto1.jpg" class="foto">
+<img src="foto2.jpeg" class="foto">
+<img src="foto3.jpeg" class="foto">
+<img src="foto4.jpeg" class="foto">
+<img src="foto5.jpeg" class="foto">
+<img src="foto6.jpeg" class="foto">
+
+</div>
+
+
+
+<img src="foto.jpeg" class="foto-final" id="fotoFinal">
+
+
+
+<div class="sobre-container" id="sobreContainer">
+
+<p>Toca para abrir</p>
+
+
+<div class="sobre" id="sobre">
+
+<div class="tapa"></div>
+
+<div class="carta-sobre" id="mensajeFinal"></div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<audio id="musica" loop>
+
+<source src="musica.mp3">
+
+</audio>
+
+
+
+<script>
+
+
+var texto="Desde que llegaste a mi vida, todo es más bonito, gracias por existir, gracias por hacerme feliz, gracias por pintar mis paisajes grises, eres una buena mujer, buena pareja y buena estudiante, se que lograras muchas cosas buenas, y quiero estar ahi, aplaudiendote, enorgulleciendome, y sobre todo amandote, porque es lo que siento por tí, amor, cariño, orgullo, felicidad y paz. Te quiero muchisimo mi hermosa Rosa ❤️";
+
+var i=0;
+
+var textoElemento=document.getElementById("texto");
+
+var mensajeFotos=document.getElementById("mensajeFotos");
+
+
+function escribir(){
+
+if(i<texto.length){
+
+textoElemento.innerHTML+=texto.charAt(i);
+
+i++;
+
+setTimeout(escribir,50);
+
+}
+else{
+
+mensajeFotos.style.display="block";
+
+permitirFotos=true;
+
+}
+
+}
+
+
+
+var mensajeCarta=
+
+"❤️ Te quiero muchísimo ❤️\n\n"+
+
+"Recuerda estas palabras:\n\n"+
+
+"Ven tomame, de la mano vamos que,\n"+
+
+"miraremos la luna esta vez\n"+
+
+"y a tu lado contigo estaré ❤️";
+
+
+var k=0;
+
+
+function escribirCarta(){
+
+if(k<mensajeCarta.length){
+
+mensajeFinal.innerHTML+=mensajeCarta.charAt(k);
+
+k++;
+
+setTimeout(escribirCarta,40);
+
+}
+
+}
+
+
+
+var fotos;
+
+var fotoFinal;
+
+var fotoActual=0;
+
+var permitirFotos=false;
+
+var sobreContainer;
+
+var sobreAbierto=false;
+
+
+
+function abrirCarta(event){
+
+event.stopPropagation();
+
+carta.style.display="block";
+
+boton.style.display="none";
+
+musica.play();
+
+fotos=document.querySelectorAll(".foto");
+
+fotoFinal=document.getElementById("fotoFinal");
+
+sobreContainer=document.getElementById("sobreContainer");
+
+escribir();
+
+}
+
+
+
+document.addEventListener("click",function(){
+
+if(!permitirFotos)return;
+
+if(fotoActual<fotos.length){
+
+fotos[fotoActual].classList.add("mostrar");
+
+fotoActual++;
+
+}
+else if(fotoActual==fotos.length){
+
+fotoFinal.classList.add("mostrar");
+
+fotoActual++;
+
+setTimeout(()=>{
+
+sobreContainer.classList.add("mostrar");
+
+},800);
+
+}
+
+});
+
+
+sobre.onclick=function(event){
+
+event.stopPropagation();
+
+if(!sobreAbierto){
+
+this.classList.add("abierto");
+
+sobreAbierto=true;
+
+escribirCarta();
+
+}
+
+};
+
+
+
+/* CORAZONES */
+
+setInterval(function(){
+
+var corazon=document.createElement("div");
+
+corazon.className="corazon";
+
+corazon.innerHTML="❤️";
+
+corazon.style.left=Math.random()*100+"vw";
+
+corazon.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(corazon);
+
+setTimeout(()=>corazon.remove(),6000);
+
+},300);
+
+
+</script>
+
+
+</body>
+</html>
